@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form method="post" action="/profile">
+    Email:
+    <%=email%> <input type="text" id="email" name="email">
+    Name:
+    <%=name%> <input type="text" id="name" name="name">
+    Country:
+    <%=country%> <input type="text" id="country" name="country">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+<a href="/main">Main</a>
+<a href="/enneagram">Enneagram</a>
+<a href="/logout">Log Out</a>
+
+</body>
+</html>

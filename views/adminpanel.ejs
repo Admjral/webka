@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<head>
+    <meta charset="utf-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+<div class="vse">
+<div class="greetings">
+    <h1>Welcome to Admin Panel, <%=username%></h1>
+</div>
+<div class="menu">
+    <nav class="navMenu">
+        <button type="button" class="btn btn-success"><a href="/logout"><a href="/logout">Logout</a></button>
+    </nav>
+</div>
+<br>
+<br>
+<br>
+<div class="users">
+    <table class="table">
+        <tr>
+            <th class="table__heading">Username</th>
+            <th class="table__heading">Name</th>
+            <th class="table__heading">Surname</th>
+            <th class="table__heading">Email</th>
+        </tr>
+        <%usersinfo.forEach(function(user) { %>
+        <tbody>
+        <tr>
+            <td><%=user.login%></td>
+            <td><%=user.name %></td>
+            <td><%=user.surname %></td>
+            <td><%=user.email %></td>
+        </tr>
+        </tbody>
+        <% }) %>
+    </table>
+</div>
+<br><br><br>
+<div class="sortname">
+    <form method="post" action="/sort_names">
+        <button type="submit">Sort by names</button>
+    </form></div>
+<br>
+<div class="sortname">
+    <button type="button" id="myBtn">Delete user</button>
+</div>
+
+    <div class="modal-content">
+
+        <h1>Delete user</h1>
+        <p>Enter the users login to delete the user</p>
+        <hr>
+        <div class="deleteform">
+            <form action="/delete" method="post">
+                <div class="form-outline mb-4">
+                    <p>Username:</p><input name="username" id="login" class="input" type="text" placeholder=" " />
+                </div>
+                <button type="text" class="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+
+<br>
+<div class="sortname">
+    <button type="button" id="update">Update user</button>
+</div>
+
+    <div class="modal-content">
+
+        <h1>Update user</h1>
+        <p>Enter the users login and new information to update the user</p>
+        <hr>
+        <div class="deleteform">
+            <form action="/update" method="post">
+                <div class="form-outline mb-4">
+                    <p>Username:</p><input name="username" id="login" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>First Name:</p><input name="firstname" id="firstname" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>Surname:</p> <input name="lastname" id="lastname" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>E-mail:</p><input name="email" id="email" class="input" type="text" placeholder=" " />
+                </div>
+                <button type="text" class="submit">Update</button>
+            </form>
+        </div>
+    </div>
+
+<br>
+<div class="sortname">
+    <button type="button" id="insert">Add a new user</button>
+</div>
+    <div class="modal-content">
+        <h1>Insert user</h1>
+        <p>Enter the user information to add a profile</p>
+        <hr>
+        <div class="deleteform">
+            <form action="/insert" method="post">
+                <div class="form-outline mb-4">
+                    <p>Username:</p><input name="username" id="login" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>Password:</p><input name="passw" id="password" class="input" type="password" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>First Name:</p><input name="firstname" id="firstname" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>Surname:</p><input name="lastname" id="lastname" class="input" type="text" placeholder=" " />
+                </div>
+                <div class="form-outline mb-4">
+                    <p>E-mail</p> <input name="mail" id="email" class="input" type="text" placeholder=" " />
+                </div>
+                <button type="text" class="submit">Insert</button>
+            </form>
+        </div>
+    </div>
+<br>
+</div>
+<style>
+    html {
+        font-size: 20px;
+        font-family: 'Oswald', sans-serif;
+    }
+    body{
+        background: rgb(50, 147, 154);
+    }
+    h1 {
+        font-size: 60px;
+        text-align: center;
+    }
+    p, h3 {
+        font-size: 20px;
+        line-height: 2;
+        letter-spacing: 2px;
+    }
+    h1 {
+        margin: 0;
+        padding: 20px 0;
+        color: #FFFFFF;
+        text-shadow: 3px 3px 1px #32939a;
+    }
+    .vse{
+        max-width: 900px;
+        margin: 5em auto 0em;
+        background-color: #76bdc7;/*#939393;*/
+        /*border: 5px solid #343a40;*/
+        padding: 0 20px 20px 20px;
+        text-align: center;
+    }
+    .modal-content{
+        background: rgb(50, 147, 154);
+    }
+
+
+    .navMenu a {
+        color: black;
+        text-decoration: none;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        font-weight: 300;
+        display: inline-block;
+        width: 100px;
+        padding-left: 40px;
+    }
+
+    .navMenu a:hover {
+        color: white;
+    }
+    .users {
+        background-color: whitesmoke;
+        border-radius: 15px;
+    }
+
+</style>
+<script>var modal = document.getElementById("myModal");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    var update = document.getElementById("updatemodal");
+    var updatebtn = document.getElementById("update");
+    var span = document.getElementsByClassName("close1")[0];
+    updatebtn.onclick = function() {
+        update.style.display = "block";
+    }
+    span.onclick = function() {
+        update.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == update) {
+            update.style.display = "none";
+        }
+    }
+    var insert = document.getElementById("insertmodal");
+    var insertbtn = document.getElementById("insert");
+    var span = document.getElementsByClassName("close2")[0];
+    insertbtn.onclick = function() {
+        insert.style.display = "block";
+    }
+    span.onclick = function() {
+        insert.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == insert) {
+            insert.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>
